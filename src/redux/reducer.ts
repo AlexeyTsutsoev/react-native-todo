@@ -1,23 +1,29 @@
-import {DarkTheme, DefaultTheme, Theme} from '@react-navigation/native';
 import {combineReducers, createSlice} from '@reduxjs/toolkit';
 
-const getInitialState = () => {
-  return {
-    theme: DefaultTheme,
-    login: '',
-    isAuth: false,
-  };
+export type todoType = {
+  title: string;
+  text: string;
+  isComplite: boolean;
+  isActive: boolean;
+  key: Date;
 };
 
 export type RootState = {
-  theme: Theme;
   login: string;
   isAuth: boolean;
+  todoList: Array<todoType>;
+};
+
+const getInitialState = {
+  login: null,
+  isAuth: false,
+  // eslint-disable-next-line no-array-constructor
+  todoList: new Array<todoType>(),
 };
 
 const main = createSlice({
   name: 'main',
-  initialState: getInitialState(),
+  initialState: getInitialState,
   reducers: {
     signIn: (state, action) => {
       state.isAuth = true;
@@ -25,15 +31,21 @@ const main = createSlice({
     },
     signOut: state => {
       state.isAuth = false;
-      state.login = '';
+      state.login = null;
     },
-    changeTheme: (state, action) => {
-      state.theme = action.payload === 'dark' ? DarkTheme : DefaultTheme;
+    addTodo: (state, action) => {
+      state.todoList.push(action.payload);
+    },
+    removeTodo: (state, action) => {
+      const newTodo = state.todoList.filter(
+        todo => todo.key !== action.payload,
+      );
+      state.todoList = newTodo;
     },
   },
 });
 
-export const {signIn, signOut, changeTheme} = main.actions;
+export const {signIn, signOut} = main.actions;
 
 const rootReducer = combineReducers({
   main: main.reducer,

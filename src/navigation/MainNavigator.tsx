@@ -1,18 +1,32 @@
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 import React, {FC} from 'react';
-import {useSelector} from 'react-redux';
-import {RootState} from '../redux/reducer';
 import {createStackNavigator} from '@react-navigation/stack';
 import StartScreen from '../screens/StartScreen/StartScreen';
+import {useSelector} from 'react-redux';
+import HomeNavigator from './HomeNavigator';
+import {RootState} from '../redux/store';
+import {useColorScheme} from 'react-native';
 
 const Stack = createStackNavigator();
 
 const MainNavigator: FC = () => {
-  const theme = useSelector((state: RootState) => state.theme);
+  const theme = useColorScheme() ? DarkTheme : DefaultTheme;
+  const isAuth = useSelector((state: RootState) => state.main.isAuth);
+
+  console.log('theme---', theme);
+
   return (
     <NavigationContainer theme={theme}>
       <Stack.Navigator>
-        <Stack.Screen name="start" component={StartScreen} />
+        {isAuth ? (
+          <Stack.Screen name="home" component={HomeNavigator} />
+        ) : (
+          <Stack.Screen name="start" component={StartScreen} />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

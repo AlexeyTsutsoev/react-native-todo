@@ -9,13 +9,22 @@ type btnProps = {
 
 const MyButton = (props: btnProps) => {
   const {colors} = useTheme();
-  console.log(colors);
 
   return (
     <TouchableOpacity
       onPress={props.onPress}
-      style={{backgroundColor: colors.card}}>
-      <Text style={{color: colors.text}}>{props.title}</Text>
+      // eslint-disable-next-line react-native/no-inline-styles
+      style={{
+        alignItems: 'center',
+        backgroundColor: colors.card,
+        padding: 5,
+        borderWidth: 2,
+        borderRadius: 5,
+        borderColor: colors.border,
+        margin: 5,
+        width: '50%',
+      }}>
+      <Text style={{color: colors.primary}}>{props.title}</Text>
     </TouchableOpacity>
   );
 };
