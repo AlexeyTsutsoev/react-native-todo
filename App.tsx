@@ -9,6 +9,7 @@
  */
 
 import React from 'react';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {Provider} from 'react-redux';
 import MainNavigator from './src/navigation/MainNavigator';
 import store from './src/redux/store';
@@ -16,7 +17,9 @@ import store from './src/redux/store';
 const App = () => {
   return (
     <Provider store={store}>
-      <MainNavigator />
+      <SafeAreaProvider>
+        <MainNavigator />
+      </SafeAreaProvider>
     </Provider>
   );
 };
