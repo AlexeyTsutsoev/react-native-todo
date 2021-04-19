@@ -10,8 +10,6 @@ type Props = {
 const CustomView: FC<Props> = (props: Props) => {
   const {colors} = useTheme();
 
-  console.log('container', colors.background);
-
   return (
     <SafeAreaView
       // eslint-disable-next-line react-native/no-inline-styles

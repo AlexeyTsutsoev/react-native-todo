@@ -28,7 +28,6 @@ const MainScreen = () => {
   };
 
   const activeHandler = (id: any) => {
-    console.log(id);
     dispatch(setActive(id));
   };
 

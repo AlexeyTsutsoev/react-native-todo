@@ -15,16 +15,11 @@ const HomeNavigator = () => {
       screenOptions={({route}) => ({
         tabBarIcon: ({focused, color, size}) => {
           let iconName = '';
-          console.log(route.name);
-
           if (route.name === 'main') {
-            console.log('if main');
             iconName = focused ? 'home' : 'home';
           } else if (route.name === 'Add ToDo') {
-            console.log('if add');
             iconName = focused ? 'plus-circle' : 'plus';
           } else if (route.name === 'Info') {
-            console.log('if info');
             iconName = focused ? 'info-circle' : 'info';
           }
           return <Icons name={iconName} size={size} color={color} />;
