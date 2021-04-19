@@ -5,6 +5,8 @@ import {GestureResponderEvent, Text, TouchableOpacity} from 'react-native';
 type btnProps = {
   title: string;
   onPress: (event: GestureResponderEvent) => void;
+  style?: object;
+  textStyle?: object;
 };
 
 const MyButton = (props: btnProps) => {
@@ -23,8 +25,11 @@ const MyButton = (props: btnProps) => {
         borderColor: colors.border,
         margin: 5,
         width: '50%',
+        ...props.style,
       }}>
-      <Text style={{color: colors.primary}}>{props.title}</Text>
+      <Text style={{color: colors.primary, ...props.textStyle}}>
+        {props.title}
+      </Text>
     </TouchableOpacity>
   );
 };

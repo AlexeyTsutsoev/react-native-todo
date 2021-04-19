@@ -4,6 +4,7 @@ import {SafeAreaView} from 'react-native';
 
 type Props = {
   children: JSX.Element | JSX.Element[];
+  style?: object;
 };
 
 const CustomView: FC<Props> = (props: Props) => {
@@ -16,10 +17,10 @@ const CustomView: FC<Props> = (props: Props) => {
       // eslint-disable-next-line react-native/no-inline-styles
       style={{
         backgroundColor: colors.background,
-        display: 'flex',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        ...props.style,
       }}>
       {props.children}
     </SafeAreaView>
