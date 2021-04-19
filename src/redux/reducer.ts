@@ -5,13 +5,7 @@ export type todoType = {
   text: string;
   isComplite: boolean;
   isActive: boolean;
-  key: Date;
-};
-
-export type RootState = {
-  login: string;
-  isAuth: boolean;
-  todoList: Array<todoType>;
+  key: string;
 };
 
 const getInitialState = {
@@ -37,15 +31,37 @@ const main = createSlice({
       state.todoList.push(action.payload);
     },
     removeTodo: (state, action) => {
-      const newTodo = state.todoList.filter(
+      const newTodos = state.todoList.filter(
         todo => todo.key !== action.payload,
       );
-      state.todoList = newTodo;
+      state.todoList = newTodos;
+    },
+    setActive: (state, action) => {
+      state.todoList.forEach(todo => {
+        if (todo.key === action.payload) {
+          todo.isActive = !todo.isActive;
+        }
+      });
+    },
+    updateTodo: (state, action) => {
+      state.todoList.forEach(todo => {
+        if (todo.key === action.payload.key) {
+          todo.title = action.payload.title;
+          todo.text = action.payload.text;
+        }
+      });
     },
   },
 });
 
-export const {signIn, signOut} = main.actions;
+export const {
+  signIn,
+  signOut,
+  addTodo,
+  removeTodo,
+  setActive,
+  updateTodo,
+} = main.actions;
 
 const rootReducer = combineReducers({
   main: main.reducer,
