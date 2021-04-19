@@ -14,10 +14,8 @@ import {useColorScheme} from 'react-native';
 const Stack = createStackNavigator();
 
 const MainNavigator: FC = () => {
-  const theme = useColorScheme() ? DarkTheme : DefaultTheme;
+  const theme = useColorScheme() === 'dark' ? DarkTheme : DefaultTheme;
   const isAuth = useSelector((state: RootState) => state.main.isAuth);
-
-  console.log('theme---', theme);
 
   return (
     <NavigationContainer theme={theme}>
