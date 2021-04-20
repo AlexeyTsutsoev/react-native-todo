@@ -1,11 +1,11 @@
-import {useFormik} from 'formik';
 import React, {useState} from 'react';
-import {useDispatch} from 'react-redux';
-import MyButton from '../../components/UI/MyButton/MyButton';
-import * as yup from 'yup';
-import {signIn} from '../../redux/reducer';
-import CustomView from '../../components/containers/CustomView/CustomView';
 import {Modal} from 'react-native';
+import * as yup from 'yup';
+import {useFormik} from 'formik';
+import {useDispatch} from 'react-redux';
+import {signIn} from '../../redux/reducer';
+import MyButton from '../../components/UI/MyButton/MyButton';
+import CustomView from '../../components/containers/CustomView/CustomView';
 import MyInput from '../../components/UI/MyInput/MyInput';
 
 const validation = yup.object().shape({

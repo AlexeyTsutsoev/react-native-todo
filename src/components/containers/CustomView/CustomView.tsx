@@ -1,6 +1,6 @@
-import {useTheme} from '@react-navigation/native';
 import React, {FC} from 'react';
 import {SafeAreaView} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
 type Props = {
   children: JSX.Element | JSX.Element[];

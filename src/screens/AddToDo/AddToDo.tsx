@@ -1,12 +1,12 @@
-import {useFormik} from 'formik';
-import React, {useState} from 'react';
-import CustomView from '../../components/containers/CustomView/CustomView';
-import MyInput from '../../components/UI/MyInput/MyInput';
+import React, {FC, useState} from 'react';
+import {Modal, StyleSheet} from 'react-native';
 import * as yup from 'yup';
-import MyButton from '../../components/UI/MyButton/MyButton';
+import {useFormik} from 'formik';
 import {useDispatch} from 'react-redux';
 import {addTodo, todoType} from '../../redux/reducer';
-import {Modal, StyleSheet} from 'react-native';
+import CustomView from '../../components/containers/CustomView/CustomView';
+import MyInput from '../../components/UI/MyInput/MyInput';
+import MyButton from '../../components/UI/MyButton/MyButton';
 import CustomText from '../../components/containers/CustomText/CustomText';
 
 const validation = yup.object().shape({
@@ -14,7 +14,7 @@ const validation = yup.object().shape({
   text: yup.string().required('Enter text'),
 });
 
-const AddToDo = () => {
+const AddToDo: FC = () => {
   const [isShow, setIsShow] = useState<boolean>(false);
   const dispatch = useDispatch();
 

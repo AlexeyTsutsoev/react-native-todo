@@ -1,13 +1,13 @@
-import {useFormik} from 'formik';
-import React, {useState} from 'react';
+import React, {FC, useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import * as yup from 'yup';
+import {useFormik} from 'formik';
 import {CheckBox} from 'react-native-elements';
 import {useDispatch} from 'react-redux';
-import * as yup from 'yup';
+import {setActive, todoType, updateTodo} from '../../../redux/reducer';
 import CustomText from '../../../components/containers/CustomText/CustomText';
 import MyButton from '../../../components/UI/MyButton/MyButton';
 import MyInput from '../../../components/UI/MyInput/MyInput';
-import {setActive, todoType, updateTodo} from '../../../redux/reducer';
 
 type Props = {
   todo: todoType;
@@ -20,7 +20,7 @@ const validation = yup.object().shape({
   text: yup.string().required('Enter text'),
 });
 
-const TodoItem = (props: Props) => {
+const TodoItem: FC<Props> = (props: Props) => {
   const [selected, setSelected] = useState<boolean>(false);
   const dispatch = useDispatch();
 

@@ -1,5 +1,4 @@
 import React, {FC} from 'react';
-import {Text} from 'react-native-elements';
 import CustomText from '../../components/containers/CustomText/CustomText';
 import CustomView from '../../components/containers/CustomView/CustomView';
 

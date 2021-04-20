@@ -1,14 +1,14 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Alert, StyleSheet} from 'react-native';
 import {FlatList} from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
-import CustomText from '../../components/containers/CustomText/CustomText';
-import CustomView from '../../components/containers/CustomView/CustomView';
 import {removeTodo, setActive} from '../../redux/reducer';
 import {RootState} from '../../redux/store';
 import TodoItem from './components/TodoItem';
+import CustomText from '../../components/containers/CustomText/CustomText';
+import CustomView from '../../components/containers/CustomView/CustomView';
 
-const MainScreen = () => {
+const MainScreen: FC = () => {
   const todos = useSelector((state: RootState) => state.main.todoList);
   const dispatch = useDispatch();
 

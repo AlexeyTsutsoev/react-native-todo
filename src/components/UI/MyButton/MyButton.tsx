@@ -1,6 +1,6 @@
-import {useTheme} from '@react-navigation/native';
-import React from 'react';
+import React, {FC} from 'react';
 import {GestureResponderEvent, Text, TouchableOpacity} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
 type btnProps = {
   title: string;
@@ -9,7 +9,7 @@ type btnProps = {
   textStyle?: object;
 };
 
-const MyButton = (props: btnProps) => {
+const MyButton: FC<btnProps> = (props: btnProps) => {
   const {colors} = useTheme();
 
   return (

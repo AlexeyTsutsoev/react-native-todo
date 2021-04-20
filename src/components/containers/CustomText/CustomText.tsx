@@ -1,13 +1,13 @@
-import {useTheme} from '@react-navigation/native';
-import React from 'react';
+import React, {FC} from 'react';
 import {Text} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
 type Props = {
   title: string;
   style?: object;
 };
 
-const CustomText = (props: Props) => {
+const CustomText: FC<Props> = (props: Props) => {
   const {colors} = useTheme();
 
   return (

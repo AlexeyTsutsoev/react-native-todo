@@ -1,6 +1,6 @@
-import {useTheme} from '@react-navigation/native';
-import React from 'react';
+import React, {FC} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
+import {useTheme} from '@react-navigation/native';
 
 type MyInputProps = {
   multiLine?: boolean;
@@ -11,7 +11,7 @@ type MyInputProps = {
   style?: object;
 };
 
-const MyInput = (props: MyInputProps) => {
+const MyInput: FC<MyInputProps> = (props: MyInputProps) => {
   const {colors} = useTheme();
   return (
     <TextInput

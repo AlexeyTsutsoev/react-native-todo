@@ -1,5 +1,5 @@
+import React, {FC} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import React from 'react';
 import AddToDo from '../screens/AddToDo/AddToDo';
 import InfoScreen from '../screens/InfoScreen/InfoScreen';
 import MainScreen from '../screens/MainScreen/MainScreen';
@@ -8,7 +8,7 @@ import {useTheme} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 
-const HomeNavigator = () => {
+const HomeNavigator: FC = () => {
   const {colors} = useTheme();
   return (
     <Tab.Navigator
