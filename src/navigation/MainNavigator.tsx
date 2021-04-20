@@ -1,31 +1,23 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  NavigationContainer,
-} from '@react-navigation/native';
-import React, {FC} from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import StartScreen from '../screens/StartScreen/StartScreen';
-import {useSelector} from 'react-redux';
-import HomeNavigator from './HomeNavigator';
-import {RootState} from '../redux/store';
+import React, {FC, useEffect} from 'react';
 import {useColorScheme} from 'react-native';
-
-const Stack = createStackNavigator();
+import {NavigationContainer} from '@react-navigation/native';
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../redux/store';
+import {loadTheme} from '../redux/reducer';
+import StackNavigator from './StackNavigator';
 
 const MainNavigator: FC = () => {
-  const theme = useColorScheme() === 'dark' ? DarkTheme : DefaultTheme;
-  const isAuth = useSelector((state: RootState) => state.main.isAuth);
+  const theme = useSelector((state: RootState) => state.main.theme);
+  const dispatch = useDispatch();
+  const color = useColorScheme();
+
+  useEffect(() => {
+    dispatch(loadTheme(color));
+  }, [color, dispatch]);
 
   return (
     <NavigationContainer theme={theme}>
-      <Stack.Navigator>
-        {isAuth ? (
-          <Stack.Screen name="home" component={HomeNavigator} />
-        ) : (
-          <Stack.Screen name="start" component={StartScreen} />
-        )}
-      </Stack.Navigator>
+      <StackNavigator />
     </NavigationContainer>
   );
 };
