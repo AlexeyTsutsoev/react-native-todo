@@ -1,3 +1,4 @@
+import {DarkTheme, DefaultTheme} from '@react-navigation/native';
 import {combineReducers, createSlice} from '@reduxjs/toolkit';
 
 export type todoType = {
@@ -9,10 +10,11 @@ export type todoType = {
 };
 
 const getInitialState = {
-  login: null,
+  login: '',
   isAuth: false,
   // eslint-disable-next-line no-array-constructor
   todoList: new Array<todoType>(),
+  theme: DefaultTheme,
 };
 
 const main = createSlice({
@@ -25,7 +27,10 @@ const main = createSlice({
     },
     signOut: state => {
       state.isAuth = false;
-      state.login = null;
+      state.login = '';
+    },
+    changeLogin: (state, action) => {
+      state.login = action.payload;
     },
     addTodo: (state, action) => {
       state.todoList.push(action.payload);
@@ -51,16 +56,25 @@ const main = createSlice({
         }
       });
     },
+    toggleTheme: (state, action) => {
+      state.theme = action.payload ? DarkTheme : DefaultTheme;
+    },
+    loadTheme: (state, action) => {
+      state.theme = action.payload === 'dark' ? DarkTheme : DefaultTheme;
+    },
   },
 });
 
 export const {
   signIn,
   signOut,
+  changeLogin,
   addTodo,
   removeTodo,
   setActive,
   updateTodo,
+  toggleTheme,
+  loadTheme,
 } = main.actions;
 
 const rootReducer = combineReducers({
